@@ -1,1 +1,28 @@
-here
+<p>Add a venue:</p>
+
+<form action="/venues" method="post">
+  <label for="venue">Venue Name:</label>
+  <input id="venue" name="venue" type="text">
+  <br>
+  <button type="submit">Add the venue</button>
+</form>
+
+<br>
+
+<% if @venues.any?() %>
+<p>Here is the list of venues</p>
+
+<ul>
+  <% @venues.each do |venue| %>
+  <li><%= venue.name() %></li>
+  <% end %>
+</ul>
+
+<% else %>
+<br>
+<p>There are no venues added yet</p>
+<% end %>
+
+<br>
+
+<a href="/bands">Click here to add a band</a>
