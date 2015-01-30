@@ -1,26 +1,32 @@
 <h1>Band/Venue Tracker</h1>
 
 
-<p>Add a venue:</p>
-
-<form action="/venues" method="post">
-  <label for="venue">Venue Name:</label>
-  <input id="venue" name="venue" type="text">
-  <br>
-  <button type="submit">Add the venue</button>
-</form>
-
+<a href="/bands">Click here to add a band</a>
 <br>
+<a href="/venues">Click here to add a venue</a>
 
-<% if @venues.any?() %>
-  <p>Here are the list of venues</p>
+<h3>Band list:</h3>
 
+<% if @bands.any?() %>
+  <p>Click on a band to see the list of venues</p>
   <ul>
-    <% @venues.each do |venue| %>
-      <li><%= venue.name() %></li>
+    <% @bands.each do |band| %>
+      <li><a href="/bands/<%= band.id() %>"><%= band.name() %></a><li>
     <% end %>
   </ul>
 <% else %>
-<br>
-  <p>There are no venues added yet</p>
+  <p>There are no bands yet</p>
+<% end %>
+
+<h3>Venue list:</h3>
+
+<% if @venues.any?() %>
+  <p>Click on a venue to see the bands that have played there</p>
+    <ul>
+      <% @venues.each do |venue| %>
+      <li><a href="/venues/<%= venue.id() %>"><%= venue.name() %></a><?li>
+      <% end %>
+    </ul>
+<% else %>
+  <p>There are no venues yet</p>
 <% end %>
