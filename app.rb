@@ -32,3 +32,18 @@ post('/venues') do
   @venues = Venue.all()
   erb(:venues)
 end
+
+get("/bands/:id") do
+  @venues = Venue.all()
+  @band = Band.find(params.fetch("id").to_i())
+  erb(:band_page)
+end
+
+patch("/bands/:id") do
+  band_id = params.fetch("id").to_i()
+  @venue = Venue.find(params.fetch("id").to_i())
+  @band = Band.find(params.fetch("id").to_i())
+  @band.update({:venue_id => venue_id})
+  @venues = Venue.all()
+  erb(:band_page)
+end
