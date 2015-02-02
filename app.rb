@@ -40,6 +40,11 @@ get("/bands/:id") do
   erb(:band_page)
 end
 
+get("/venues/:id") do
+  @venue = Venue.find(params.fetch("id").to_i())
+  erb(:venue_page)
+end
+
 patch("/bands/:id") do
   @band = Band.find(params.fetch("id").to_i())
   params["venue_id"].each do |id|
@@ -48,4 +53,14 @@ patch("/bands/:id") do
   end
   @venues = Venue.all()
   erb(:band_page)
+end
+
+patch("/venues/:id") do
+  @venue = Venue.find(params.feth("id").to_i())
+  params["band_id"].each do |id|
+    band = Band.find(id.to_i())
+    @venue.bands << band
+  end
+  @bands = Band.all()
+  erb(:venue_page)
 end
