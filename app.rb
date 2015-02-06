@@ -56,7 +56,7 @@ patch("/bands/:id") do
 end
 
 patch("/venues/:id") do
-  @venue = Venue.find(params.feth("id").to_i())
+  @venue = Venue.find(params.fetch("id").to_i())
   params["band_id"].each do |id|
     band = Band.find(id.to_i())
     @venue.bands << band
